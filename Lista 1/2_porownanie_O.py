@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import random
 import time
 
-
+#O(n)
 def example1(S):
     """Return the sum of the elements in sequence S."""
     n = len(S)
@@ -11,6 +11,7 @@ def example1(S):
         total += S[j]
     return total
 
+#O(n/2)
 def example2(S):
     """Return the sum of the elements with even index in sequence S."""
     n = len(S)
@@ -19,6 +20,7 @@ def example2(S):
         total += S[j]
     return total
 
+#O(n^2)
 def example3(S):
     """Return the sum of the prex sums of sequence S."""
     n = len(S)
@@ -28,6 +30,7 @@ def example3(S):
             total += S[k]
     return total
 
+#O(n^3)
 def example4(A, B): # assume that A and B have equal length
     """Return the number of elements in B equal to the sum of prex sums in A."""
     n = len(A)

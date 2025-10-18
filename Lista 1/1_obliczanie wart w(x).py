@@ -1,4 +1,6 @@
 coeff = [4, 6, 8]
+x = 2
+
 # 1. O(n^2)
 def wiel_wart(x, coeff):
     """
@@ -9,12 +11,28 @@ def wiel_wart(x, coeff):
     """
     res = coeff[0]
     for i in range(1, len(coeff)):
-        res += coeff[i] * x ** i
+        power = 1
+        for j in range(i):
+            power *= x
+        res += coeff[i] * power
     return res
 
-print(wiel_wart(2, coeff))
+def fast_pow(x, n):
+    """
+    This is a function calculating number to the given power using recursion.
+    :param x: number
+    :param n: exponent
+    :return: x to the power of n
+    """
+    if n == 0:
+        return 1
+    half = fast_pow(x, n // 2)
+    if n % 2  == 0:
+        return half * half
+    else:
+        return half * half * x
 
-# 2. O(n logn)
+# 2. O(n log n)
 def wiel_wart_rek(x, coeff):
     """
     *Same* but using recursion to calculate the values of x to the power of n.
@@ -22,18 +40,28 @@ def wiel_wart_rek(x, coeff):
     :param coeff:
     :return:
     """
-    res = coeff[0]
-    for i in range(1,len(coeff)):
-        if i // 2 == 0:
-            half = x ** (1 // 2)
-            res += coeff[i] * half * half
-        else:
-            res += coeff[i] * half * half * x
+    res = 0
+    for i in range(len(coeff)):
+        res += coeff[i] * fast_pow(x, i)
     return res
-
-print(wiel_wart(2, coeff))
 
 # 3. Horner
 '''Aby obliczyć wartość wielomianu w postaci Hornera, 
 należy wykonać n podstawień danej wartości w zamian za x oraz n - 1 mnożeń, co daje 2n - 1 operacji, 
 gdzie stopień wielomianu jest większy lub równy n.'''
+
+def wiel_wart_horner(x, coeff):
+    """
+    *Same* but using Horner's polynomial form.
+    :param x:
+    :param coeff:
+    :return:
+    """
+    res = 0
+    for a in reversed(coeff):
+        res = res * x + a
+    return res
+
+print("O(n^2):", wiel_wart(x, coeff))
+print("O(n log n):", wiel_wart_rek(x, coeff))
+print("O(n) Horner:", wiel_wart_horner(x, coeff))
