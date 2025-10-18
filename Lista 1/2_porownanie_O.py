@@ -9,7 +9,7 @@ def example1(S):
     total = 0
     for j in range(n):
         total += S[j]
-        return total
+    return total
 
 def example2(S):
     """Return the sum of the elements with even index in sequence S."""
@@ -34,11 +34,11 @@ def example4(A, B): # assume that A and B have equal length
     count = 0
     for i in range(n):
         total = 0
-    for j in range(n):
-        for k in range(1 + j):
-            total += A[k]
-    if B[i] == total:
-        count += 1
+        for j in range(n):
+            for k in range(1 + j):
+                total += A[k]
+        if B[i] == total:
+            count += 1
     return count
 
 num_of_elem = [10**i for i in range(2,5)]
@@ -47,7 +47,7 @@ for n in num_of_elem:
     li = random.sample(range(1, 10001), n)
     li_of_li.append(li)
 
-functions = [example1, example2, example3, example4]
+functions = [example1, example2, example3]
 for f in functions:
     print(f"Testing function {f.__name__}.")
     li_of_time = []
