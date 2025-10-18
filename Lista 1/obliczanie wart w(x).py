@@ -34,4 +34,6 @@ def wiel_wart_rek(x, coeff):
 print(wiel_wart(2, coeff))
 
 # 3. Horner
-'''Aby obliczyć wartość wielomianu w postaci Hornera, należy wykonać n podstawień danej wartości w zamian za x oraz n - 1 mnożeń, co daje 2n - 1 operacji, gdzie stopień wielomianu jest większy lub równy n.'''
+'''Aby obliczyć wartość wielomianu w postaci Hornera, 
+należy wykonać n podstawień danej wartości w zamian za x oraz n - 1 mnożeń, co daje 2n - 1 operacji, 
+gdzie stopień wielomianu jest większy lub równy n.'''
