@@ -12,3 +12,8 @@ if is_palindrom('kajAk'):
     print('Jest palindromem')
 else:
     print('Nie jest palindormem')
+
+if is_palindrom('krowa'):
+    print('Jest palindromem')
+else:
+    print('Nie jest palindormem')

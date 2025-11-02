@@ -13,4 +13,4 @@ def max_min(elem):
             new_max = max_res
         return new_min, new_max
 
-print(max_min([1, 4, 6, 2]))
+print(max_min([1, 4, 6, 2, 14, 20, 6]))

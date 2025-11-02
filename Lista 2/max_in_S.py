@@ -9,4 +9,4 @@ def max_in_S(elem):
             result = max_res
     return result
 
-print(max_in_S([1, 3, 2]))
+print(max_in_S([1, 3, 2, 10, 7, 14, 2]))
