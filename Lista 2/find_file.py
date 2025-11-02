@@ -1,18 +1,22 @@
 import os
 
 def find(path, filename):
-    found = []
-    if not os.path.exists(path):
-        return found
+    file_paths = []
     for entry in os.listdir(path):
-        full_path = os.path.join(path, entry)
-        if os.path.isfile(full_path) and entry == filename:
-            found.append(full_path)
-        elif os.path.isdir(full_path):
-            found.extend(find(full_path, filename))
+        new_path = os.path.join(path, entry)
+        if os.path.isfile(new_path) and entry == filename:
+            file_paths.append(new_path)
+            #print("returning file", len(file_paths), new_path)
+        elif os.path.isdir(new_path):
+            file_paths += find(new_path, filename)
+            #print("returning folder", len(file_paths), new_path)
+    return file_paths
 
-    return found
-
-res = find("/Users/muszka/PycharmProjects/Algorytmy-i-struktury-danych/Lista 2/folder_find", "text.rtf")
-for r in res:
-    print(r)
+starting_path = "/Users/muszka/PycharmProjects/Algorytmy-i-struktury-danych/Lista 2/folder_find"
+if not os.path.exists(starting_path):
+    print("starting path not found")
+else:
+    res = find(starting_path, "text.rtf")
+    print("FOUND FILES:")
+    for r in res:
+        print(r)
