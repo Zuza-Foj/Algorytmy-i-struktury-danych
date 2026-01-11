@@ -15,7 +15,7 @@ def quicksort_iterative(arr):
         pivot_idx = partition(arr, left, right)
 
         # lewa i prawa sublista lądują na stosie
-        # najpierw sortujemy mniejszą sublistę
+        # najpierw sortujemy mniejszą sublistę (ale jako pierwszą popychamy na stos dłuższą, więc zostanie posortowana jako druga)
         if pivot_idx - left > right - pivot_idx:
             stack.append((left, pivot_idx - 1))
             stack.append((pivot_idx + 1, right))
