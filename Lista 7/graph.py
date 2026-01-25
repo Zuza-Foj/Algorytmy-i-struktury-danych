@@ -1,8 +1,6 @@
 import graphviz
 import sys
-sys.path.append('./Algorytmy-i-struktury-danych/Lista 3')
-
-from queue import Queue
+from queue_from_l_3 import Queue
 
 class Graph:
     def __init__(self):
@@ -49,6 +47,7 @@ class Graph:
     def contains(self, vert):
         return vert in self.list_of_verts
 
+# zad 2.
     def save_graph(self, filename='graph.dot'):
         with open(filename, 'w') as f:
             f.write("digraph Graph {\n")
@@ -81,6 +80,7 @@ class Graph:
         dot.render(filename, format='png', cleanup=True)
         return
 
+# zad 3.
     def bfs(self, start_vert):
         if start_vert not in self.list_of_verts:
             print(f"Wierzchołek {start_vert} nie istnieje w grafie!")
@@ -99,7 +99,7 @@ class Graph:
                     visited.append(neighbor)
                     queue.enqueue(neighbor)
 
-            return visited
+        return visited
 
     def dfs_rec(self, start_vert, visited=None):
         if visited is None:
@@ -115,3 +115,56 @@ class Graph:
 
         return visited
 
+# zad 4.
+    def topological_sort(self):
+        visited = set()
+        stack = []
+
+        def dfs_topo(v):
+            visited.add(v)
+            for neighbour in self.get_neighbors(v):
+                if neighbour not in visited:
+                    dfs_topo(neighbour)
+            stack.append(v)
+
+        for vertex in self.list_of_verts:
+            if vertex not in visited:
+                dfs_topo(vertex)
+        return stack[::-1]
+
+# zad 5.
+    def shortest_paths_bfs(self, start_vert):
+        if start_vert not in self.list_of_verts:
+            return None
+
+        distances = {vert: float('inf') for vert in self.list_of_verts}    # jak daleko dany wierzchołek znajduje się od początku
+        predecessors = {vert: None for vert in self.list_of_verts}    # skąd przechodzę do kolejnego wierzchołka
+        distances[start_vert] = 0
+        queue = Queue()
+        queue.enqueue(start_vert)
+
+        while not queue.is_empty():
+            current = queue.dequeue()
+            for neighbor in self.get_neighbors(current):
+                if distances[neighbor] == float('inf'):  # If not visited
+                    distances[neighbor] = distances[current] + 1
+                    predecessors[neighbor] = current
+                    queue.enqueue(neighbor)
+
+        return distances, predecessors
+
+if __name__ == '__main__':
+    g = Graph()
+    g.add_vertices_from_list(['A', 'B', 'C', 'D', 'E'])
+    g.add_edges_from_list([('A', 'B'), ('A', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'E')])
+
+    g.draw()
+    g.save_graph()
+
+    print(f"Ścieżka BFS: {g.bfs('A')}")
+    print(f"Ścieżka DFS: {g.dfs_rec('A', [])}")
+
+    dag = Graph()
+    dag.add_edges_from_list([('S', 'B'), ('B', 'SZ')])
+    topo = dag.topological_sort()
+    print(f"Topologicznie: {topo}")
