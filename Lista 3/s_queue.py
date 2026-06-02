@@ -1,3 +1,4 @@
+# zad 10.
 class Queue_out_of_Stacks:
 
     def __init__(self):

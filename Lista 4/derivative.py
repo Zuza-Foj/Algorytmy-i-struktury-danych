@@ -83,6 +83,12 @@ if __name__ == "__main__":
     my_tree.set_left(2, "x")
     my_tree.set_right(2, "6")
 
+    t = BinaryTree()
+    t.set_root("*")
+    t.set_left(0, '5')
+    t.set_right(0, "y")
+
+    print(derivative(t, 0, 'x'))
 
     print(derivative(my_tree, 0, 'x'))
 

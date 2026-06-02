@@ -1,3 +1,4 @@
+# zad 6.
 class Empty(Exception):
     pass
 

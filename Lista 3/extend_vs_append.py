@@ -4,6 +4,7 @@ initial_list = list(range(100))
 num_of_elem = [50, 100, 150, 200, 300, 1000]
 li_of_li = [random.sample(range(1, 10**4), n) for n in num_of_elem]
 
+# O(n)
 li_of_times_e = []
 for l in li_of_li:
     current_list = list(initial_list)
@@ -12,6 +13,7 @@ for l in li_of_li:
     end = time.time()
     li_of_times_e.append(end - start)
 
+# O(1)
 li_of_times_a = []
 for l in li_of_li:
     current_list = list(initial_list)

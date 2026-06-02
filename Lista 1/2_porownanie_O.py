@@ -44,13 +44,13 @@ def example4(A, B): # assume that A and B have equal length
             count += 1
     return count
 
-num_of_elem = [10**i for i in range(2,5)]
+num_of_elem = [10**i for i in range(2, 4)]
 li_of_li = []
 for n in num_of_elem:
-    li = random.sample(range(1, 10001), n)
+    li = random.sample(range(1, 1001), n)
     li_of_li.append(li)
 
-functions = [example1, example2, example3]
+functions = [example1, example2, example3, example4]
 for f in functions:
     print(f"Testing function {f.__name__}.")
     li_of_time = []

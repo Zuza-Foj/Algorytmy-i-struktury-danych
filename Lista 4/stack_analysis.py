@@ -10,7 +10,7 @@ class Stack:
     def __init__(self):
         self.head = None
 
-    def push(self, new_value):
+    def push(self, new_value): # O(n)
         new_node = Node(new_value, self.head)
         self.head = new_node
 
@@ -23,7 +23,7 @@ class Stack:
         self.head = self.head.next
         return popped_value
 
-    def top(self):
+    def top(self): # tak samo jak pop O(1)
         if self.head is None:
             print("Lista nie zawiera żadnych elementów!")
             return None
